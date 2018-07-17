@@ -1,0 +1,466 @@
+@charset "UTF-8";
+* {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  box-sizing: border-box;
+  font-family: "微软雅黑"; }
+
+a {
+  text-decoration: none; }
+
+a {
+  -webkit-tap-highlight-color: transparent;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none; }
+
+.clearfix:after {
+  content: '';
+  display: block;
+  clear: both; }
+
+.clearfix {
+  zoom: 1; }
+
+body, html {
+  width: 100%; }
+
+body {
+  background: #fff; }
+
+.top_cas {
+  width: 100%;
+  height: 24px;
+  position: fixed;
+  left: 0;
+  top: 0px;
+  background: white;
+  display: none;
+  z-index: 99; }
+
+.article1 {
+  width: 100%; }
+  .article1 .content_art1 {
+    width: 100%;
+    height: auto; }
+    .article1 .content_art1 .p3 {
+      display: block;
+      padding: 0.4rem 0.3rem;
+      height: auto;
+      width: 100%;
+      font-size: 0.34rem;
+      font-family: "PingFang SC","微软雅黑";
+      color: #231815;
+      line-height: 0.45rem;
+      text-align: justify;
+      font-weight: bold; }
+    .article1 .content_art1 .person {
+      width: 100%;
+      height: auto;
+      padding: 0.2rem 0.3rem;
+      border-top: solid 1px #f5f6f8;
+      border-bottom: solid 1px #f5f6f8;
+      display: flex;
+      justify-content: space-between; }
+      .article1 .content_art1 .person .le_c {
+        height: auto;
+        display: flex; }
+        .article1 .content_art1 .person .le_c img {
+          width: 1.4rem;
+          height: 1.4rem;
+          border-radius: 50%; }
+        .article1 .content_art1 .person .le_c .you {
+          overflow: hidden;
+          margin-left: 0.28rem; }
+          .article1 .content_art1 .person .le_c .you .p1 {
+            margin-top: 0.27rem;
+            font-size: 0.35rem;
+            text-align: left; }
+          .article1 .content_art1 .person .le_c .you .p2 {
+            margin-top: 0.15rem;
+            font-size: 0.2rem;
+            color: #333;
+            font-family: "PingFang SC","微软雅黑";
+            text-align: left; }
+      .article1 .content_art1 .person .ri_c {
+        height: 1.4rem;
+        line-height: 1.4rem;
+        display: flex;
+        overflow: hidden; }
+        .article1 .content_art1 .person .ri_c img {
+          width: 0.4rem;
+          height: 0.4rem;
+          margin-top: 0.46rem; }
+        .article1 .content_art1 .person .ri_c .p4 {
+          color: #666666;
+          font-size: 0.28rem;
+          color: #666;
+          margin-left: 0.1rem; }
+    .article1 .content_art1 .content {
+      width: 100%;
+      padding: 0.4rem 0.3rem;
+      text-align: justify;
+      font-family: "PingFang SC","微软雅黑";
+      font-size: 16px;
+      color: #333;
+      line-height: 0.4rem;
+      border-bottom: solid 1px #f5f6f8; }
+      .article1 .content_art1 .content p {
+        text-indent: 2em;
+        word-break: break-all;
+        line-height: 1.8em; }
+        .article1 .content_art1 .content p img {
+          max-width: 100%;
+          height: auto;
+          margin-left: -2em; }
+        .article1 .content_art1 .content p embed {
+          max-width: 100%;
+          margin-left: -2em; }
+        .article1 .content_art1 .content p img:not(:first-child) {
+          margin-left: 0em; }
+      .article1 .content_art1 .content img {
+        max-width: 100%;
+        height: auto; }
+      .article1 .content_art1 .content table {
+        width: 100%;
+        height: auto;
+        display: block; }
+        .article1 .content_art1 .content table tbody {
+          width: 100%;
+          height: auto;
+          display: block; }
+          .article1 .content_art1 .content table tbody tr {
+            width: 100%;
+            height: auto;
+            display: block; }
+            .article1 .content_art1 .content table tbody tr td {
+              width: 100%;
+              height: auto;
+              display: block;
+              word-break: break-all; }
+    .article1 .content_art1 .sm {
+      width: 100%;
+      height: auto;
+      padding: 0.36rem 0.3rem;
+      text-align: justify;
+      font-family: "PingFang Sc","微软雅黑";
+      font-size: 0.22rem;
+      color: #666;
+      font-weight: lighter;
+      line-height: 0.35rem; }
+
+.ca_head {
+  width: 100%;
+  height: 0.8rem;
+  position: relative;
+  padding: 0 0.3rem;
+  display: flex;
+  justify-content: space-between;
+  overflow: hidden;
+  position: fixed;
+  top: 0px;
+  left: 0;
+  background: white;
+  z-index: 99; }
+  .ca_head .p1 {
+    width: 100%;
+    text-align: center;
+    height: 100%;
+    line-height: 0.8rem;
+    font-size: 18px;
+    font-family: "PingFang SC","微软雅黑";
+    color: #333; }
+  .ca_head .img2 {
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    right: 0.3rem;
+    top: 0.2rem;
+    cursor: pointer; }
+  .ca_head input {
+    padding-left: 0.2rem;
+    height: 0.34rem;
+    width: 6.24rem;
+    border: none;
+    outline: none;
+    border-left: 2px solid #666;
+    font-family: "PingFang SC","微软雅黑";
+    margin-top: 0.23rem;
+    line-height: 0.34rem;
+    font-size: 16px;
+    display: none; }
+  .ca_head input::-webkit-input-placeholder {
+    color: #666;
+    font-size: 0.24rem;
+    font-weight: lighter; }
+  .ca_head input:-moz-placeholder {
+    color: #666;
+    font-size: 0.24rem;
+    font-weight: lighter; }
+  .ca_head input::-moz-placeholder {
+    color: #666;
+    font-size: 0.24rem;
+    font-weight: lighter; }
+  .ca_head input:-ms-input-placeholder {
+    color: #666;
+    font-size: 0.24rem;
+    font-weight: lighter; }
+  .ca_head span {
+    display: block;
+    font-size: 16px;
+    font-family: "PingFang SC","微软雅黑";
+    color: #333;
+    height: 100%;
+    line-height: 0.8rem;
+    display: none;
+    cursor: pointer; }
+  .ca_head a {
+    position: absolute;
+    left: 0.2rem;
+    top: 0.1rem;
+    width: 0.6rem;
+    height: 0.6rem;
+    display: block;
+    background: url(../img/fh.png) no-repeat 50% 50%;
+    background-size: 90%; }
+
+.art_zcw {
+  width: 100%;
+  height: auto;
+  padding: 0.6rem;
+  margin-bottom: 50px;
+  background: #3a3a3a;
+  padding-top: 0.3rem; }
+  .art_zcw p {
+    width: 100%;
+    height: auto;
+    text-indent: 2em;
+    text-align: justify;
+    font-size: 0.25rem;
+    line-height: 0.5rem;
+    color: white; }
+  .art_zcw h2 {
+    width: 100%;
+    height: auto;
+    text-align: left;
+    font-size: 0.4rem;
+    font-weight: bold;
+    margin-top: 15px;
+    margin-bottom: 20px;
+    color: white; }
+  .art_zcw h1 {
+    width: 100%;
+    height: auto;
+    padding: 0.5rem 0;
+    text-align: center;
+    font-size: 0.5rem;
+    color: #b183ff; }
+
+.article2 {
+  width: 100%;
+  height: auto;
+  background: #f5f6f8;
+  overflow: hidden;
+  margin-top: 0.8rem; }
+  .article2 ul {
+    width: 100%;
+    height: auto;
+    margin-top: 0.1rem;
+    background: #fff; }
+    .article2 ul .wh {
+      width: 100%;
+      height: auto;
+      border-bottom: 1px solid #f5f6f8;
+      padding: 0.38rem 0.3rem; }
+      .article2 ul .wh a {
+        width: 100%;
+        height: auto;
+        display: flex;
+        justify-content: space-between; }
+        .article2 ul .wh a .left {
+          height: 0.65rem;
+          display: flex; }
+          .article2 ul .wh a .left .img_zcw {
+            width: 0.35rem;
+            height: 0.35rem;
+            margin-top: 0.15rem; }
+          .article2 ul .wh a .left span {
+            display: inline-block;
+            height: 0.65rem;
+            line-height: 0.65rem;
+            font-size: 16px;
+            font-family: "PingFang SC","微软雅黑";
+            color: #31393C;
+            margin-left: 0.2rem; }
+        .article2 ul .wh a .right {
+          width: 60%;
+          height: 0.65rem;
+          display: flex;
+          justify-content: space-between;
+          overflow: hidden; }
+          .article2 ul .wh a .right .jz {
+            height: 0.65rem;
+            padding: 0.15rem 0;
+            display: flex; }
+            .article2 ul .wh a .right .jz img {
+              width: 0.25rem;
+              height: 0.25rem;
+              margin-top: 0.03rem;
+              margin-right: 0.05rem; }
+            .article2 ul .wh a .right .jz span {
+              display: inline-block;
+              height: 0.3rem;
+              line-height: 0.3rem;
+              font-size: 16px;
+              font-family: "PingFang SC","微软雅黑";
+              color: #333;
+              font-weight: bold; }
+            .article2 ul .wh a .right .jz .span1 {
+              font-weight: lighter; }
+          .article2 ul .wh a .right .bli {
+            width: 1.45rem;
+            height: 0.44rem;
+            line-height: 0.44rem;
+            text-align: center;
+            color: #fff;
+            border-radius: 0.13rem;
+            font-size: 14px;
+            font-family: "PingFang SC","微软雅黑";
+            margin-top: 0.07rem; }
+    .article2 ul .wh2 {
+      width: 100%;
+      height: auto;
+      border-bottom: 1px solid #f5f6f8;
+      padding: 0.38rem 0.3rem; }
+      .article2 ul .wh2 a {
+        width: 100%;
+        height: auto;
+        display: flex;
+        justify-content: space-between; }
+        .article2 ul .wh2 a .left {
+          height: 0.65rem;
+          display: flex;
+          position: relative;
+          width: 45%; }
+          .article2 ul .wh2 a .left img {
+            width: auto !important;
+            height: 15px !important;
+            margin-top: 0.18rem; }
+          .article2 ul .wh2 a .left span {
+            display: inline-block;
+            height: 0.65rem;
+            line-height: 0.65rem;
+            font-size: 16px;
+            font-family: "PingFang SC","微软雅黑";
+            color: #31393C;
+            margin-left: 0.2rem; }
+          .article2 ul .wh2 a .left .span_zc1 {
+            display: inline-block;
+            color: #999999;
+            font-size: 12px;
+            font-family: "PingFang SC","微软雅黑";
+            position: absolute;
+            left: 0.32rem;
+            bottom: -0.4rem;
+            width: 4rem; }
+          .article2 ul .wh2 a .left .pair {
+            font-size: 14px;
+            float: right; }
+          .article2 ul .wh2 a .left .bizhong {
+            width: 55%;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap; }
+        .article2 ul .wh2 a .right {
+          width: 52%;
+          height: 0.65rem;
+          display: flex;
+          justify-content: space-between;
+          overflow: hidden; }
+          .article2 ul .wh2 a .right .jz {
+            height: 0.65rem;
+            padding: 0.15rem 0;
+            display: flex; }
+            .article2 ul .wh2 a .right .jz span {
+              display: inline-block;
+              height: 0.3rem;
+              line-height: 0.3rem;
+              font-size: 16px;
+              font-family: "PingFang SC","微软雅黑";
+              color: #333; }
+            .article2 ul .wh2 a .right .jz .span_zc {
+              color: #3aa4ff; }
+          .article2 ul .wh2 a .right .bli {
+            width: 1.26rem;
+            height: 0.44rem;
+            line-height: 0.44rem;
+            text-align: center;
+            color: #fff;
+            background: #2176ff;
+            border-radius: 0.13rem;
+            font-size: 14px;
+            font-family: "PingFang SC","微软雅黑";
+            margin-top: 0.07rem; }
+
+.neirong_down {
+  width: 100%;
+  height: auto;
+  background: url(../img/back_down.png) no-repeat 50% 50%;
+  overflow: hidden;
+  position: relative; }
+  .neirong_down .fixed {
+    width: 209px;
+    background: url(../img/huihua.png) no-repeat 50% 50%;
+    background-size: 91%;
+    position: fixed;
+    right: 0;
+    top: 0; }
+    .neirong_down .fixed .content5 {
+      width: 100%;
+      padding: 10px 20px;
+      position: relative;
+      overflow: hidden; }
+      .neirong_down .fixed .content5 p {
+        font-size: 12px;
+        color: #000;
+        padding: 5px 15px;
+        margin-top: 17px;
+        font-family: "微软雅黑";
+        color: #333;
+        line-height: 20px; }
+  .neirong_down .logo_do {
+    width: 100%;
+    height: auto;
+    padding: 0.15rem 0;
+    text-align: center; }
+    .neirong_down .logo_do .img1 {
+      width: 3.23rem;
+      height: 1rem; }
+    .neirong_down .logo_do .img2 {
+      width: 2.33rem;
+      height: 2.33rem; }
+    .neirong_down .logo_do a {
+      width: auto;
+      height: auto; }
+      .neirong_down .logo_do a img {
+        width: 3rem;
+        height: 0.75rem; }
+  .neirong_down h2 {
+    color: white;
+    font-size: 0.4rem;
+    text-align: center;
+    margin: 0.2rem 0; }
+  .neirong_down div:nth-of-type(2) {
+    margin-top: 2rem; }
+
+@media (device-width: 375px) and (device-height: 812px) and (-webkit-min-device-pixel-ratio: 3) {
+  .top_cas {
+    display: block; }
+
+  .ca_head {
+    top: 24px; }
+
+  .article2 {
+    margin-top: 1.4rem; } }
+
+/*# sourceMappingURL=style.css.map */

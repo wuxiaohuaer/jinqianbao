@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>邀请码</title>
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no">
+    <meta name="format-detection" content="telephone=no"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta content="email=no" name="format-detection"/>
+    <link rel="stylesheet" type="text/css" href="css/xy-index.css?v=9"/>
+
+    <script src="js/flexible.js"></script>
+    <script src="js/jquery-1.10.1.min.js"></script>
+    <script src="js/config.js" type="text/javascript" charset="utf-8"></script>
+
+    <script type="text/javascript" src="js/profit-xy.js?v=10"></script>
+    <script type="text/javascript" src="js/xy-power.js?v=11"></script>
+    <style>
+        html, body {
+            height: 100%;
+            width: 100%;
+        }
+
+        body, html {
+            background-image: url("img/xyxinbj.jpg");
+            background-repeat: no-repeat;
+            background-position: center;
+            overflow: auto;
+            background-size: 100% 100%;
+        }
+
+        #canvas {
+            /*-webkit-box-shadow: 0 0 5px #9457f1;*/
+            /*-webkit-box-shadow: 0 0 5px #9457f1 inset;*/
+            width: 1.4rem;
+            height: 1.4rem;
+            -webkit-box-shadow: -1px -1px 5px rgba(147, 87, 241, 0.8) inset, -1px -1px 5px rgba(147, 87, 241, 0.8);
+            border-radius: 50%;
+            /*opacity: 0.8;*/
+
+        }
+
+        #scroll_div {
+            overflow: hidden;
+            white-space: nowrap;
+            width: 80%;
+        }
+    </style>
+</head>
+<body>
+<section class="xy-profit">
+    <p class="xy-value">HIT算力值:<span id="info-power"><!--5566--></span></p>
+    <p class="xy-tell">
+        <span><img src="img/xy-tell.png" alt=""/>&nbsp;公告：</span>
+    </p>
+    <p class="xy-tell-content" id="scroll_div">
+        <span id="scroll_begin"></span>
+        <span id="scroll_end"></span>
+    </p>
+
+    <!--<marquee id="scroll_begin" behavior="scroll"  width="300" direction="left" scrollamount="3" style="color:#fff;position: absolute;top:11.6rem;margin-left: 1.75rem;"  loop="-1">-->
+    <!--&lt;!&ndash;公告通知公告通知公告通知公告通知公告通知公告通知公告通知公告&ndash;&gt;-->
+    <!--</marquee>-->
+    <p class="xy-help">
+        <a href="help.html?v=10"><img src="img/xy-help.png" alt=""/></a>
+    </p>
+
+    <div class="imgb">
+        <div class="imgsmb"></div>
+    </div>
+
+    <div style="text-align: center;padding: 3.9rem 0 0;position: relative;" class="canvas">
+        <canvas id="canvas">
+            <!--<img src="img/xy-big.png" alt="" />-->
+        </canvas>
+        <p class="xy-big"><img src="img/xybig.png" alt=""/></p>
+        <p class="xy-grow">生长中</p>
+    </div>
+
+    <p class="xy-friend">
+        <!--<a class="Invitation">邀请好友</a>-->
+    </p>
+
+    <div class="xy-person">
+        <ul>
+            <li><span>HIT</span> <b id="power">0</b></li>
+            <span class="one"></span><span class="two"></span>
+            <table class="list">
+                <tr>
+                    <th>排名</th>
+                    <th>用户</th>
+                    <th>算力</th>
+                </tr>
+                <!--<tr><td><img src='img/xy-first.png' alt=''/></td><td>王丽</td><td>2233</td></tr>-->
+                <!--<tr><td><img src='img/xy-two.png' alt=''/></td><td>王丽</td><td>2233</td></tr>-->
+                <!--<tr><td><img src='img/xy-three.png' alt=''/></td><td>王丽</td><td>2233</td></tr>-->
+                <!--<tr><td>No.4</td><td>王丽</td><td>2233</td></tr>-->
+                <!--<tr><td>No.5</td><td>王丽</td><td>2233</td></tr>-->
+                <!--<tr><td>No.6</td><td>王丽</td><td>2233</td></tr>-->
+                <!--<tr><td>No.7</td><td>王丽</td><td>2233</td></tr>-->
+                <!--<tr><td>No.8</td><td>王丽</td><td>2233</td></tr>-->
+                <!--<tr><td>No.9</td><td>王丽</td><td>2233</td></tr>-->
+                <!--<tr><td>No.10</td><td>王丽</td><td>2233</td></tr>-->
+            </table>
+        </ul>
+    </div>
+</section>
+
+<script>
+    $(function () {
+        var uid = GetQueryString('uid');
+        $(".Invitation").attr('href', '/view/addfriend.html?uid=' + uid);
+    })
+</script>
+
+<script>
+
+    //    //文字横向滚动
+    //function ScrollImgLeft(){
+    //    var speed=50;
+    //    var MyMar = null;
+    //    var scroll_begin = document.getElementById("scroll_begin");
+    //    var scroll_end = document.getElementById("scroll_end");
+    //    var scroll_div = document.getElementById("scroll_div");
+    //    scroll_end.innerHTML=scroll_begin.innerHTML;
+    //    function Marquee(){
+    //        if(scroll_end.offsetWidth-scroll_div.scrollLeft<=0)
+    //            scroll_div.scrollLeft-=scroll_begin.offsetWidth;
+    //        else
+    //            scroll_div.scrollLeft++;
+    //    }
+    //    MyMar=setInterval(Marquee,speed);
+    //    scroll_div.onmouseover = function(){
+    //        clearInterval(MyMar);
+    //    };
+    //    scroll_div.onmouseout = function(){
+    //        MyMar = setInterval(Marquee,speed);
+    //    }
+    //}
+    //ScrollImgLeft();
+
+
+    function GetQueryString(name) {
+        var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
+        var r = window.location.search.substr(1).match(reg);
+        if (r != null) return unescape(r[2]);
+        return null;
+    }
+
+
+    $(function () {
+    	var uid = GetQueryString('uid');
+//            var uid ="TURBd01EQXdNREF3TUlDZWt0cXZoWjFrZ1l4OGE0aW1tOXFEZzJiY2hJMkFySWFFZkdTeGlaaXg="
+//          var uid = 'TURBd01EQXdNREF3TUlDdWt0cXZxNW1zZjN4OGFZYTJpWmFEYzJiY2hJMkFySWFhb21leHI1aXk=';
+        $.ajax({
+
+            type: 'get',
+
+            url: much + '/api.php/Other/notice',
+
+            data: {
+                //"uid":uid
+            },
+
+            async: true,
+
+            dataType: "json",
+
+            success: function (data) {
+                //alert(data.code);
+                if (data.code == 200) {
+                    var news_countent = data.data.info.content;
+                    //alert(news_countent);
+                    $("#scroll_begin").html(news_countent);
+//                        $("#scroll_end").html(news_countent);
+                }
+
+            }
+
+        });
+
+    });
+
+
+</script>
+</body>
+</html>
