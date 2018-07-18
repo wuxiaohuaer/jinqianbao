@@ -1,6 +1,7 @@
 /**
  * Created by Administrator on 2018/4/2.
  */
+// var uid ="TURBd01EQXdNREF3TUg2RnItQ0R0bmRyc2MtbXFIMmNxSmV5ZXNwamY3VjJaWU93cUphMHVJSm5nSVhOb3c="
 var token = tokens
 var code = codes;
     //绘制环状百分比图
@@ -101,7 +102,7 @@ function GetQueryString(name) {
     if (r != null) return unescape(r[2]);
     return null;
 }
-
+// 表格数据
 $(function () {
     var uid = GetQueryString('uid');
     if (code === 4001) {
@@ -127,8 +128,9 @@ $(function () {
 
         success:function(data){
             //alert(data.code);
+            // console.log(data)
             if(data.code==200){
-                //alert(data.data.info.power);
+                // alert(data.data.info.power);
                 var info_power = data.data.info.power ;
                 $("#info-power").html(info_power);
                 var html='';
@@ -142,7 +144,7 @@ $(function () {
 
         },
         error:function(){
-            //alert("出错啦");
+            // alert("出错啦");
         }
 
     });

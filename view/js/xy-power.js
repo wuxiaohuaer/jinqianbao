@@ -1,7 +1,13 @@
 /**
  * Created by Administrator on 2018/4/6.
  */
-
+var token = tokens
+var code = codes;
+if (code === 4001) {
+    token = fun1() 
+} else {
+    token = token
+}
 window.setInterval("move()", 1000);
 
 function move() {
@@ -28,17 +34,21 @@ $(function () {
 
 //全局数组
 var args = 0;
-
+if (code === 4001) {
+    token = fun1() 
+} else {
+    token = token
+}
 function getHIT() {
     $(function () {
 //      var uid = GetQueryString('uid');
-//           var uid ="TURBd01EQXdNREF3TUlDZnI1ZXZtM2VvZjR5TWJZZW1vOXFFbXAyWGc0MThwb1dFaksyemVYWnJnYS0zMjY1eWMzRQ=="
-        //    var uid = 'TURBd01EQXdNREF3TUlDdWt0cXZxNW1zZjN4OGFZYTJpWmFEYzJiY2hJMkFySWFhb21leHI1aXk=';
+        //   var uid ="TURBd01EQXdNREF3TUg2RnItQ0R0bmRyc2MtbXFIMmNxSmV5ZXNwamY3VjJaWU93cUphMHVJSm5nSVhOb3c="
+        //    var uid = 'TURBd01EQXdNREF3TUg2RnItQ0R0bmRyc2MtbXFIMmNxSmV5ZXNwamY3VjJaWU93cUphMHVJSm5nSVhOb3c=';
         $.ajax({
 
             type: 'POST',
 
-            url: much + '/api.php/Ucenter/getHIT',
+            url: much + '/api.php/Ucenter/getHIT/access_token/'+token,
 
             data: {
                   "uid":uid
@@ -50,6 +60,7 @@ function getHIT() {
 
             success: function (data) {
                 //alert(data.code);
+                console.log(data)
                 if (data.code == 200) {
                     var info_amount = data.data.info.amount;
                     //alert(info_amount)
@@ -57,7 +68,7 @@ function getHIT() {
                     args = data.data.lists.length;
                     $.each(data.data.lists, function (key, val) {
                         if (key < 6) {
-                            star(val['hit'], val['hid']);
+                            star(val['hit'], val['hid'],key);
                         }
                     });
 
@@ -86,7 +97,7 @@ function aaa() {
 
 
 //动画主函�?
-function star(hit, hid) {
+function star(hit, hid,i) {
     //创建div
     var imgObj_div = document.createElement("div");
     imgObj_div.setAttribute("style", "width:30px;height:30px;position:relative");
@@ -115,15 +126,15 @@ function star(hit, hid) {
     var w = $("img").width();
     var h = $("img").height();
    // alert($(".imgb").width());
-    var divx = $(".imgb").width() - w - 60;
-    var divy = $(".imgsmb").height() - h - 40;
+    var divx = $(".imgb").width() - w ;
+    var divy = $(".imgsmb").height() - h ;
 
     //添加层叠样式表属�?(style属�??  行内样式)
     var x = getRandom(0, divx);
     var y = getRandom(0, divy);
     //设置坐标 x y 为未知数
-    imgObj_div.setAttribute("style", "position:absolute;left:" + x + "px;top:" + y + "px;");
-
+    imgObj_div.setAttribute("style", "position:absolute;");
+    imgObj_div.setAttribute("class", "img"+i);
 
     imgObj_div.setAttribute("hid", hid);
     imgObj_div.setAttribute("hit", hit);
@@ -156,12 +167,16 @@ function removeImg(obj) {
 //  var uid = GetQueryString('uid');
 //    var uid ="TURBd01EQXdNREF3TUlDZnI1ZXZtM2VvZjR5TWJZZW1vOXFFbXAyWGc0MThwb1dFaksyemVYWnJnYS0zMjY1eWMzRQ=="
 //  var uid = 'TURBd01EQXdNREF3TUlDdWt0cXZxNW1zZjN4OGFZYTJpWmFEYzJiY2hJMkFySWFhb21leHI1aXk=';
-
+    if (code === 4001) {
+        token = fun1() 
+    } else {
+        token = token
+    }
     $.ajax({
 
         type: 'POST',
 
-        url: much + '/api.php/Ucenter/addHIT/',
+        url: much + '/api.php/Ucenter/addHIT/access_token/'+token,
 
 
         data: {

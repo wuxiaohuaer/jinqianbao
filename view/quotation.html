@@ -120,8 +120,6 @@
 		if(uid==null){
 			$(".wrapper_two .sc_hq .tab1 .sshq_bj .span2").hide();
 			$(".wrapper_two .sc_hq .tab2 .sshq_bj .span2").hide();
-			
-			
 		}else{
 			$(".wrapper_two .sc_hq .tab1 .sshq_bj .span2").show();
 			$(".wrapper_two .sc_hq .tab2 .sshq_bj .span2").show();
@@ -131,7 +129,8 @@
 		} else {
 			token = token
 		}
-		//图片
+		var num = 0
+		//轮播图片
 		$.ajax({
 			type:"GET",
 			url:much+"/api.php/Trend/getPicture/access_token/"+token,
@@ -139,17 +138,40 @@
 			dataType:"json",
 			data:{
 				"p":1,
-				"limit":6,
+				"limit":2,
 				"uid":uid
 			},
 			success:function(mes){
 				var arr2=mes.data.lists;
 				for(var i=0;i<arr2.length;i++){
-					str='<img src="'+ (much + arr2[i].img) +'"/>';
+					str = '<img src="' + (much + arr2[i].img) + '"class="img'+ i +'"/>';
 					$("#scroller").append(str);
 				}
 			}
 		});
+		console.log($("#scroller:last"))
+		// var i = 1
+		// if () {
+		// 	i++
+		// 	$.ajax({
+		// 		type:"GET",
+		// 		url:much+"/api.php/Trend/getPicture/access_token/"+token,
+		// 		async:true,
+		// 		dataType:"json",
+		// 		data:{
+		// 			"p":i,
+		// 			"limit":2,
+		// 			"uid":uid
+		// 		},
+		// 		success:function(mes){
+		// 			var arr2=mes.data.lists;
+		// 			for(var i=0;i<arr2.length;i++){
+		// 				str = '<img src="' + (much + arr2[i].img) + '"class="img'+ i +'"/>';
+		// 				$("#scroller").append(str);
+		// 			}
+		// 		}
+		// 	});
+		// }
 		//tab1行情
 		if (code === 4001) {
 			token = fun1() 
@@ -647,7 +669,7 @@
 				"p":1
 			},
 			success:function(mess){
-				console.log(mess);
+				// console.log(mess);
 				var arr=mess.data.lists;
 				var color="";
 //				alert(arr)
@@ -685,7 +707,7 @@
 					token = token
 				}
 				$.ajax({
-					url:much+"/api.php/Quotation/lists/p/"+s+"access_token/"+token,
+					url:much+"/api.php/Quotation/lists/p/"+s+"/access_token/"+token,
 					type: 'POST',
 					async:true,
 					dataType:"json",
@@ -697,7 +719,7 @@
 					success: function(messg) {
 						var arr2=messg.data.lists;
 						var color="";
-						
+						console.log(messg)
 						if(arr2.length>0){
 							
 							for(var i=0;i<arr2.length;i++){
@@ -732,7 +754,7 @@
 					}
 				});
 			}
-			if($(document).scrollTop()>=150){
+			if($(document).scrollTop()>=180&&$(document).scrollTop()<=190){
 				$(".wrapper_two .sc_hq .tab2 .sshq_bj").css({
 					"position":"fixed",
 					"left":0,
