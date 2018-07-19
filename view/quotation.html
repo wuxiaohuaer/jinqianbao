@@ -10,7 +10,8 @@
 	    
 		<title>行情</title>
 		<link rel="stylesheet" type="text/css" href="css/index_style.css?v=2"/>
-		
+		<link rel="stylesheet" href="swiper/css/swiper.css">
+		<link rel="stylesheet" href="swiper/css/swiper.min.css">
 		<script type="text/javascript">
 	    	window.onload=function(){
 				document.documentElement.style.fontSize = document.documentElement.clientWidth / 7.5 + 'px';
@@ -40,20 +41,21 @@
 		<article class="wrapper_two">
 			<div class="menu_hq">
 				<ul class="clearfix">
-					<li class="scxq">市场行情</li>
-					<li class="gzbz">关注币种</li>
+					<li id="scxq" class="scxq">市场行情</li>
+					<li id="gzbz" class="gzbz">关注币种</li>
 				</ul>
 			</div>
 			<ul class="sc_hq">
 				<li class="tab1">
 					<p>区块链行情快讯</p>
-					<div id="wrapper">
-						<div id="scroller" class="clearfix">
+					<div id="wrapper" class="swiper-container">
+						<div id="scroller" class="clearfix swiper-wrapper">
 							<!--<img src="img/banner_hq.png" alt="" />
 							<img src="img/banner_hq.png" alt="" />
 							<img src="img/banner_hq.png" alt="" />
 							<img src="img/banner_hq.png" alt="" />
 							<img src="img/banner_hq.png" alt="" />-->
+							<div class="swiper-scrollbar"></div>
 						</div>
 					</div>
 					<div class="sshq_bj clearfix">
@@ -93,12 +95,12 @@
 						<li>涨跌24H</li>
 					</ol>
 					<ol class="menu_li2">
-						<li>
+						<!-- <li>
 							<p>BTC</p>
 							<p>59,178</p>
 							<p>￥49.10</p>
 							<p>-2.74%</p>
-						</li>
+						</li> -->
 					</ol>
 				</li>
 			</ul>
@@ -108,6 +110,10 @@
 </html>
 <script src="js/jquery-1.10.1.min.js" type="text/javascript" charset="utf-8"></script>
 <script src="js/config.js" type="text/javascript" charset="utf-8"></script>
+<script src="js/hq-getdata.js"></script>
+<script src="js/hq-break.js"></script>
+<script src="js/swiper.js"></script>
+<script src="swiper/js/swiper.min.js"></script>
 <!--<script src="js/iscroll.js" type="text/javascript" charset="utf-8"></script>-->
 <script type="text/javascript">
 	$(function(){	
@@ -124,32 +130,6 @@
 			$(".wrapper_two .sc_hq .tab1 .sshq_bj .span2").show();
 			$(".wrapper_two .sc_hq .tab2 .sshq_bj .span2").show();
 		}
-		if (code === 4001) {
-			token = fun1() 
-		} else {
-			token = token
-		}
-		var num = 0
-		//轮播图片
-		$.ajax({
-			type:"GET",
-			url:much+"/api.php/Trend/getPicture/access_token/"+token,
-			async:true,
-			dataType:"json",
-			data:{
-				"p":1,
-				"limit":2,
-				"uid":uid
-			},
-			success:function(mes){
-				var arr2=mes.data.lists;
-				for(var i=0;i<arr2.length;i++){
-					str = '<img src="' + (much + arr2[i].img) + '"class="img'+ i +'"/>';
-					$("#scroller").append(str);
-				}
-			}
-		});
-		console.log($("#scroller:last"))
 		// var i = 1
 		// if () {
 		// 	i++
@@ -172,137 +152,6 @@
 		// 		}
 		// 	});
 		// }
-		//tab1行情
-		if (code === 4001) {
-			token = fun1() 
-		} else {
-			token = token
-		}
-		var p=1;
-		$.ajax({
-			url:much+"/api.php/Trend/market/access_token/"+token,
-			async:true,
-			dataType:"json",
-			type:"POST",
-			data:{
-				"p":1,
-				"limit":30,
-				"uid":uid
-			},
-			success:function(messg){
-				var arr2=messg.data.lists;
-				var color="";
-				for(var i=0;i<arr2.length;i++){
-					if(arr2[i].rose>0){
-						color = "color:green"
-					}else if(arr2[i].rose<0){
-						color = "color: #ff3e3e"
-					}else{
-						color = "color:orange"
-					}
-					
-					var str='<li><p>'+arr2[i].abbreviation+'</p><p>'+arr2[i].price+'</p><p>￥'+arr2[i].turnover+'</p><p style="'+color+'">'+arr2[i].rose+'%</p><p class="'+arr2[i].is_collection+'" id="'+arr2[i].id+'"><img src="img/shou-cang.png" class="img1"/><img src="img/xing.png" class="img2"/></p></li>';
-					
-					$(".menu_li1").append(str);
-				}
-				
-				$(".false .img2").hide();
-				$(".true .img1").hide();
-				
-			}
-		})
-		
-		//tab1下拉刷新
-		$(window).scroll(function() {
-			if($(document).scrollTop() + $(window).height() >= $(document).height()) {
-				p++;
-				if (code === 4001) {
-					token = fun1() 
-				} else {
-					token = token
-				}
-				$.ajax({
-					url:much+"/api.php/Trend/market/access_token/"+token,
-					async:true,
-					dataType:"json",
-					type:"POST",
-					data:{
-						"p":p,
-						"limit":30,
-						"uid":uid
-					},
-					success: function(messg) {
-						var arr2=messg.data.lists;
-						var color="";
-						
-						if(arr2.length>0){
-							
-							for(var i=0;i<arr2.length;i++){
-					
-								if(arr2[i].rose>0){
-									color = "color:green"
-								}else if(arr2[i].rose<0){
-									color = "color: #ff3e3e"
-								}else{
-									color = "color:orange"
-								}
-							
-								var str='<li><p>'+arr2[i].abbreviation+'</p><p>'+arr2[i].price+'</p><p>￥'+arr2[i].turnover+'</p><p style="'+color+'">'+arr2[i].rose+'%</p><p class="'+arr2[i].is_collection+'" id="'+arr2[i].id+'"><img src="img/shou-cang.png" class="img1"/><img src="img/xing.png" class="img2"/></p></li>';
-								
-								
-								$(".menu_li1").append(str);
-							}
-						
-							$(".false .img2").hide();
-							$(".true .img1").hide();
-							var display =$('.wrapper_two .sc_hq .tab1 .sshq_bj .span2').css('display');
-								if(display == 'none'){
-								   $(".wrapper_two .sc_hq .tab1 .menu_li1 li p:nth-of-type(5)").show();
-			
-									$(".wrapper_two .sc_hq .tab1 .title li:nth-of-type(1)").css("width","1.3rem");
-									$(".wrapper_two .sc_hq .tab1 .title li:nth-of-type(2)").css("width","2rem");
-									$(".wrapper_two .sc_hq .tab1 .title li:nth-of-type(3)").css("width","1.9rem");
-									$(".wrapper_two .sc_hq .tab1 .title li:nth-of-type(4)").css("text-align","left");
-									
-									$(".wrapper_two .sc_hq .tab1 .menu_li1 li p:nth-of-type(1)").css("width","1.3rem")
-									$(".wrapper_two .sc_hq .tab1 .menu_li1 li p:nth-of-type(2)").css("width","2rem")
-									$(".wrapper_two .sc_hq .tab1 .menu_li1 li p:nth-of-type(3)").css("width","1.9rem")
-									$(".wrapper_two .sc_hq .tab1 .menu_li1 li p:nth-of-type(4)").css("text-align","left")
-							}
-						}
-					}
-				});
-			}
-			if($(document).scrollTop()>=150){
-				$(".wrapper_two .sc_hq .tab1 .sshq_bj").css({
-					"position":"fixed",
-					"left":0,
-					"top":"0.8rem",
-					'background':"#1a1a20"
-				})
-				$(".wrapper_two .sc_hq .tab1 .title").css({
-					"position":"fixed",
-					"left":0,
-					"top":"1.6rem",
-					'background':"#1a1a20"
-				})
-			}else{
-				$(".wrapper_two .sc_hq .tab1 .sshq_bj").css({
-					"position":"relative",
-					"left":0,
-					"top":0,
-					'background':"#1a1a20"
-				})
-				$(".wrapper_two .sc_hq .tab1 .title").css({
-					"position":"relative",
-					"left":0,
-					"top":0,
-					'background':"#1a1a20"
-				})
-			}
-		});
-		
-		
 		//tab1/2搜索
 		document.onkeydown=function(e){
 			var ev=document.all?window.event:e;
@@ -367,7 +216,7 @@
 				$.ajax({
                     url: much+"/api.php/Quotation/lists/p/1/access_token/"+token,
                     data:{
-                    	search:my_data2,
+                    	"search":my_data2,
                     	"uid":uid,
                     	"limit":50
                     },
@@ -404,7 +253,6 @@
 		}
 		
 		$(".input1_search").onsubmit = function(e){
-			
 		   var my_data=$(".input1").val();
 				my_data=escape(my_data)+"";
 				$(".wrapper_two .sc_hq .tab1 .sshq_bj .span2").show();
@@ -649,140 +497,7 @@
 				}
 			})
 			
-		});
-		
-
-		//tab2行情
-		if (code === 4001) {
-			token = fun1() 
-		} else {
-			token = token
-		}
-		$.ajax({
-			url:much+"/api.php/Quotation/lists/p/1/access_token/"+token,
-			type: 'POST',
-			async:true,
-			dataType:"json",
-			data:{
-				"uid":uid,
-				"limit":30,
-				"p":1
-			},
-			success:function(mess){
-				// console.log(mess);
-				var arr=mess.data.lists;
-				var color="";
-//				alert(arr)
-				for(var i=0;i<arr.length;i++){
-					
-					if(arr[i].rose>0){
-//						console.log(1)
-						color = "color:green"
-					}else if(arr[i].rose<0){
-//						console.log(2)
-						color = "color: #ff3e3e"
-					}else{
-//						console.log(3)
-						color = "color:orange"
-					}
-					
-					var str1='<li><p>'+arr[i].abbreviation+'</p><p>'+arr[i].price+'</p><p>￥'+arr[i].turnover+'</p><p style="'+color+'">'+arr[i].rose+'%</p><p class="true1" id="'+arr[i].tid+'"><img src="img/shou-cang.png" class="img1"/><img src="img/xing.png" class="img2"/></p></li>';
-					
-					
-					$(".menu_li2").append(str1);
-				}
-				$(".true1 .img1").hide();
-				
-			}
-		})
-		
-		//tab2下拉刷新
-		var s=1;
-		$(window).scroll(function() {
-			if($(document).scrollTop() + $(window).height() >= $(document).height()) {
-				s++;
-				if (code === 4001) {
-					token = fun1() 
-				} else {
-					token = token
-				}
-				$.ajax({
-					url:much+"/api.php/Quotation/lists/p/"+s+"/access_token/"+token,
-					type: 'POST',
-					async:true,
-					dataType:"json",
-					data:{
-						"uid":uid,
-						"limit":30,
-						"p":s
-					},
-					success: function(messg) {
-						var arr2=messg.data.lists;
-						var color="";
-						console.log(messg)
-						if(arr2.length>0){
-							
-							for(var i=0;i<arr2.length;i++){
-					
-								if(arr2[i].rose>0){
-									color = "color:green"
-								}else if(arr2[i].rose<0){
-									color = "color: #ff3e3e"
-								}else{
-									color = "color:orange"
-								}
-							
-								var str='<li><p>'+arr2[i].abbreviation+'</p><p>'+arr2[i].price+'</p><p>￥'+arr2[i].turnover+'</p><p style="'+color+'">'+arr2[i].rose+'%</p><p class="'+arr2[i].is_collection+'" id="'+arr2[i].id+'"><img src="img/xing.png" class="img2"/></p></li>';
-								
-			//					console.log(messg.data)
-								
-								$(".menu_li2").append(str);
-							}
-						
-							var display =$('.wrapper_two .sc_hq .tab2 .sshq_bj .span2').css('display');
-								if(display == 'none'){
-								   $(".wrapper_two .sc_hq .tab1 .menu_li1 li p:nth-of-type(5)").show();
-								   
-									$(".wrapper_two .sc_hq .tab2 .menu_li1 li p:nth-of-type(1)").css("width","1.3rem")
-									$(".wrapper_two .sc_hq .tab2 .menu_li1 li p:nth-of-type(2)").css("width","2rem")
-									$(".wrapper_two .sc_hq .tab2 .menu_li1 li p:nth-of-type(3)").css("width","1.9rem")
-									$(".wrapper_two .sc_hq .tab2 .menu_li1 li p:nth-of-type(4)").css("text-align","left")
-							}
-						}else{
-							return false;
-						}
-					}
-				});
-			}
-			if($(document).scrollTop()>=180&&$(document).scrollTop()<=190){
-				$(".wrapper_two .sc_hq .tab2 .sshq_bj").css({
-					"position":"fixed",
-					"left":0,
-					"top":"0.8rem",
-					'background':"#1a1a20"
-				})
-				$(".wrapper_two .sc_hq .tab2 .title").css({
-					"position":"fixed",
-					"left":0,
-					"top":"1.6rem",
-					'background':"#1a1a20"
-				})
-			}else{
-				$(".wrapper_two .sc_hq .tab2 .sshq_bj").css({
-					"position":"relative",
-					"left":0,
-					"top":0,
-					'background':"#1a1a20"
-				})
-				$(".wrapper_two .sc_hq .tab2 .title").css({
-					"position":"relative",
-					"left":0,
-					"top":0,
-					'background':"#1a1a20"
-				})
-			}
-		});
-		
+		});	
 		//tab2取消收藏
 		$(document).on('click','.true1',function(){
 			var tid=$(this).attr("id");
@@ -986,135 +701,6 @@
 				}
 			})
 		});
-		
-		$(".wrapper_two .menu_hq ul .scxq").click(function(){
-			$(".menu_li1 li").remove();
-			$(".wrapper_two .sc_hq .tab2 .sshq_bj .span3").hide();
-			$(".wrapper_two .sc_hq .tab2 .sshq_bj .span2").show();
-			$(this).css({
-				"border-bottom":"#f1be1c solid 1px",
-				"color":"#f1be1c"
-			})
-			$(".wrapper_two .menu_hq ul .gzbz").css({
-				"border-bottom":"solid 1px #999",
-				"color":"#999"
-			})
-			$(".wrapper_two .sc_hq .tab1").show();
-			$(".wrapper_two .sc_hq .tab2").hide();
-			$(".one_header_hq").show();
-			$(".two_header_hq").hide();
-			$('.one_header_hq span').hide();
-			$(".one_header_hq input").hide();
-			$(".one_header_hq p").show();
-			$(".one_header_hq img").show();
-			if (code === 4001) {
-				token = fun1() 
-			} else {
-				token = token
-			}
-			$.ajax({
-				url:much+"/api.php/Trend/market/access_token/"+token,
-				async:true,
-				dataType:"json",
-				type:"POSt",
-				data:{
-					"uid":uid,
-					"limit":3000,
-					"p":1
-				},
-				success:function(messg){
-					$(".menu_li1 li").remove()
-					var arr2=messg.data.lists;
-					var color="";
-					for(var i=0;i<arr2.length;i++){
-						
-						if(arr2[i].rose>0){
-							color = "color:green"
-						}else if(arr2[i].rose<0){
-							color = "color: #ff3e3e"
-						}else{
-							color = "color:orange"
-						}
-						
-						var str='<li><p>'+arr2[i].abbreviation+'</p><p>'+arr2[i].price+'</p><p>￥'+arr2[i].turnover+'</p><p style="'+color+'">'+arr2[i].rose+'%</p><p class="'+arr2[i].is_collection+'" id="'+arr2[i].id+'"><img src="img/shou-cang.png" class="img1"/><img src="img/xing.png" class="img2"/></p></li>';
-						
-						
-						$(".menu_li1").append(str);
-					}
-					$(".false .img2").hide();
-					$(".true .img1").hide();
-				}
-			})
-		})
-		
-		//tab2页面加载
-		$(".wrapper_two .menu_hq ul .gzbz").click(function(){
-			$(".menu_li2 li").remove();
-			$(".wrapper_two .sc_hq .tab1 .sshq_bj .span3").hide();
-			$(".wrapper_two .sc_hq .tab1 .sshq_bj .span2").show();
-			$(this).css({
-				"border-bottom":"#f1be1c solid 1px",
-				"color":"#f1be1c"
-			})
-			$(".wrapper_two .menu_hq ul .scxq").css({
-				"border-bottom":"solid 1px #999",
-				"color":"#999"
-			})
-			$(".wrapper_two .sc_hq .tab2").show();
-			$(".wrapper_two .sc_hq .tab1").hide();
-			$(".two_header_hq").show();
-			$(".one_header_hq").hide();
-			$('.two_header_hq span').hide();
-			$(".two_header_hq input").hide();
-			$(".two_header_hq p").show();
-			$(".two_header_hq img").show();
-			if (code === 4001) {
-				token = fun1() 
-			} else {
-				token = token
-			}
-			$.ajax({
-				url:much+"/api.php/Quotation/lists/p/1/access_token/"+token,
-				type: 'POST',
-				async:true,
-				dataType:"json",
-				data:{
-					"uid":uid,
-					"limit":30,
-					"p":1
-				},
-				success:function(mess){
-					
-//					console.log(mess.data.lists);
-					
-					var arr=mess.data.lists;
-					
-					
-					
-					var color="";
-					for(var i=0;i<arr.length;i++){
-						
-						if(arr[i].rose>0){
-//							console.log(1)
-							color = "color:green"
-						}else if(arr[i].rose<0){
-//							console.log(2)
-							color = "color: #ff3e3e"
-						}else{
-//							console.log(3)
-							color = "color:orange"
-						}
-						
-						var str1='<li><p>'+arr[i].abbreviation+'</p><p>'+arr[i].price+'</p><p>￥'+arr[i].turnover+'</p><p style="'+color+'">'+arr[i].rose+'%</p><p class="true1" id="'+arr[i].tid+'"><img src="img/xing.png" class="img2"/></p></li>';
-						
-						
-						$(".menu_li2").append(str1);
-					}
-					$(".true1 .img1").hide();
-					
-				}
-			})
-		})
 	})
 	function GetQueryString(name) {
 	    var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
@@ -1122,4 +708,5 @@
 	    if (r != null) return unescape(r[2]);
 	    return null;
 	}
+	
 </script>

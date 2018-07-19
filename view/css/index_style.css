@@ -402,14 +402,13 @@ html, body {
         height: auto;
         overflow-x: scroll;
         margin-top: 0.23rem;
-        margin-bottom: 0.23rem;
-        padding-left: 0.3rem; }
+        margin-bottom: 0.23rem; }
         .wrapper_two .sc_hq .tab1 #wrapper #scroller {
-          width: 300%;
+          width: 100%;
           height: auto; }
           .wrapper_two .sc_hq .tab1 #wrapper #scroller img {
             float: left;
-            width: 19%;
+            width: 100%;
             margin-right: 0.2rem; }
       .wrapper_two .sc_hq .tab1 .sshq_bj {
         width: 100%;
