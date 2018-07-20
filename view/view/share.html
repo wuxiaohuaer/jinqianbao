@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no">
+    <title>Title</title>
+</head>
+<body>
+<div>
+    <div class="nr">
+        <div class="center_b">
+            <div class="neirong_xq">
+                <div class="top_xq">
+                    <img src="./img/kuaxunbanner.png" style="width: 100%"/>
+                </div>
+                <div class="bom_xq" style="padding: 5px 30px;">
+                    <p class="p_zcw1"
+                       style="color: #666;padding-left: 30px;font-family: '微软雅黑' !important;font-size: 18px">
+                        2018-01-08 星期一
+                    </p>
+                    <div id="wrapper_zcw">
+                        <p class="p_zcw2" style="font-size: 16px">
+                            据NCASH官方推特，印度最大移动支付和商务平台Paytm加入Nucleus
+                            Vision（NCASH），以全新的方式改变支付和购物。Paytm由阿里巴巴支持，是一家以手机钱包服务闻名的金融科技巨头，其在印度的注册用户超过2亿。据《币 世
+                            界》行情显示，NCASH现报0.0437美元，涨幅5.45%。据NCASH官方推特，印度最大移动支付和商务平台Paytm加入Nucleus
+                            Vision（NCASH），以全新的方式改变支付和购物。Paytm由阿里巴巴支持，是一家以手机钱包服务闻名的金融科技巨头，其在印度的注册用户超过2亿。据《币 世
+                            界》行情显示，NCASH现报0.0437美元，涨幅5.45%。据NCASH官方推特，印度最大移动支付和商务平台Paytm加入Nucleus
+                            Vision（NCASH），以全新的方式改变支付和购物。Paytm由阿里巴巴支持，是一家以手机钱包服务闻名的金融科技巨头，其在印度的注册用户超过2亿。据《币 世
+                            界》行情显示，NCASH现报0.0437美元，涨幅5.45%。据NCASH官方推特，印度最大移动支付和商务平台Paytm加入Nucleus
+                            Vision（NCASH），以全新的方式改变支付和购物。Paytm由阿里巴巴支持，是一家以手机钱包服务闻名的金融科技巨头，其在印度的注册用户超过2亿。据《币 世
+                            界》行情显示，NCASH现报0.0437美元，涨幅5.45%。据NCASH官方推特，印度最大移动支付和商务平台Paytm加入Nucleus
+                            Vision（NCASH），以全新的方式改变支付和购物。Paytm由阿里巴巴支持，是一家以手机钱包服务闻名的金融科技巨头，其在印度的注册用户超过2亿。据《币 世
+                            界》行情显示，NCASH现报0.0437美元，涨幅5.45%。据NCASH官方推特，印度最大移动支付和商务平台Paytm加入Nucleus
+                            Vision（NCASH），以全新的方式改变支付和购物。Paytm由阿里巴巴支持，是一家以手机钱包服务闻名的金融科技巨头，其在印度的注册用户超过2亿。据《币 世
+                            界》行情显示，NCASH现报0.0437美元，涨幅5.45%。
+                        </p>
+                    </div>
+                    <div id="xiabom">
+                        <img src="./img/jqbmews.png" style="width: 100%"/>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+<script src="js/jquery-1.10.1.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="js/config.js" type="text/javascript" charset="utf-8"></script>
+<script>
+
+    //    var id = G
+    $(function () {
+        $.get("get1.php", {
+                username: $("#username").val(),
+                content: $("#content").val()
+            }, function (data, textStatus) {
+                $("#resText").html(data); // 把返回的数据添加到页面上
+            }
+        );
+    })
+
+    function GetQueryString(name) {
+        var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
+        var r = window.location.search.substr(1).match(reg);
+        if (r != null) return unescape(r[2]);
+        return null;
+    }
+
+</script>
+<script src="js/bdtj.js"></script>
+</html>
