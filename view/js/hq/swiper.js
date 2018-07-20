@@ -1,3 +1,6 @@
+var code = codes;
+var token = tokens;
+var uid = 'TURBd01EQXdNREF3TUg2RnItQ0R0bmRyc2MtbXFIMmNxSmV5ZXNwamY3VjJaWU93cUphMHVJSm5nSVhOb3c=';
 if (code === 4001) {
     token = fun1() 
 } else {
