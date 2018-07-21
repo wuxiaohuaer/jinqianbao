@@ -1,0 +1,13 @@
+{"code":"200","message":"success",
+    "data":
+        {"lists":[
+            {"abbreviation":"MIOTA","price":"7.56","turnover":3.3777,"rose":"5.01","tid":"8"},
+            {"abbreviation":"USDT","price":"6.7","turnover":368.0513,"rose":"-0.19","tid":"681"},
+            {"abbreviation":"LTC","price":"612","turnover":27.2327,"rose":"9.05","tid":"5"},
+            {"abbreviation":"XLM","price":"1.91","turnover":5.5259,"rose":"22.57","tid":"7"},
+            {"abbreviation":"EOS","price":"59.53","turnover":82.684,"rose":"11.59","tid":"680"},
+            {"abbreviation":"BCH","price":"5804","turnover":42.6413,"rose":"8.47","tid":"4"},
+            {"abbreviation":"XRP","price":"3.41","turnover":25.0017,"rose":"7.49","tid":"3"},
+            {"abbreviation":"ETH","price":"3350","turnover":164.184,"rose":"5.16","tid":"2"},
+            {"abbreviation":"BTC","price":"49418","turnover":398.0232,"rose":"9.84","tid":"1"}],
+            "p":"1","counts":"9","pages":1}}
