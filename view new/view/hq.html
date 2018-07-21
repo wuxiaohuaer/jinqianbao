@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>行情走势</title>
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no">
+    <meta name="format-detection" content="telephone=no"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta content="email=no" name="format-detection"/>
+
+    <meta name="viewport"  content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+
+    <link rel="stylesheet" type="text/css" href="css/style.css?v=22"/>
+
+    <script type="text/javascript">
+
+        window.onload = function () {
+            document.documentElement.style.fontSize = document.documentElement.clientWidth / 7.5 + 'px';
+        }
+    </script>
+</head>
+<body>
+<div class="top_cas"></div>
+
+<header class="ca_head">
+    <p class="p1">行情</p>
+    <input type="text" placeholder="请输入你想要搜索的币种" autofocus="autofocus"/>
+    <img src="img/ss.png" class="img2"/>
+    <span>取消</span>
+
+
+</header>
+<article class="article2">
+    <ul class="ul3">
+
+    </ul>
+</article>
+
+</body>
+</html>
+<script src="js/jquery-1.10.1.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="js/config.js" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript">
+
+    var navheight = GetQueryString('navheight');
+    var fontsize = GetQueryString('fontsize');
+    var token = tokens
+	var code = codes;
+    if (navheight != '' && fontsize != '') {
+        $(".ca_head").css({"height": navheight, "font-size": fontsize + 'px', "line-height": navheight + "px"});
+        $(".p1").css({"height": navheight, "font-size": fontsize + 'px', "line-height": navheight + "px"});
+    }
+
+    $(function () {
+
+        setInterval(getData(), 1000 * 30);
+
+        function getData() {
+            $(".wh").remove()
+            $.ajax({
+                url: much + "/api.php/Trend/market/access_token/"+token,
+                async: true,
+                dataType: "json",
+                success: function (messg) {
+                    var arr = messg.data.lists;
+                    var color = "";
+                    for (var i = 0; i < arr.length; i++) {
+
+                        if (arr[i].rose > 0) {
+                            color = "background:#27caa2"
+                        } else if (arr[i].rose < 0) {
+                            color = "background: #ff3e3e"
+                        } else {
+                            color = "background:orange"
+                        }
+
+                        var str = '<li class="wh"><a href="xq2.html?cid=' + (arr[i].id) + '&currency=' + arr[i].full_name + '&title=' + arr[i].abbreviation + '"><div class="left"><img src="//' + arr[i].img + '" class="img_zcw"/><span class="bizhong">' + arr[i].abbreviation + '</span></div><div class="right"><div class="jz"><span>￥' + arr[i].price + '元</span></div><div class="bli" style="' + color + '">' + arr[i].rose + '%</div></div></a></li>';
+
+                        $(".ul3").append(str);
+
+                    }
+                }
+            })
+        }
+
+    })
+
+    $(".img2").click(function () {
+        $(".p1").hide();
+        $(this).hide();
+        $(".ca_head>input").show();
+        $(".ca_head>span").show();
+        $("li").hide();
+    })
+    $(".ca_head>span").click(function () {
+        $(".p1").show();
+        $(this).hide();
+        $(".ca_head>input").hide();
+        $(".img2").show()
+        $(".wh").remove();
+        $.ajax({
+            url: much + "/api.php/Trend/getPicture/access_token/"+token,
+            async: true,
+            dataType: "json",
+            success: function (messg) {
+                console.log(messg)
+                var arr = messg.data.lists;
+                var color = "";
+                for (var i = 0; i < arr.length; i++) {
+
+                    if (arr[i].rose > 0) {
+                        color = "background:#27caa2"
+                    } else if (arr[i].rose < 0) {
+                        color = "background: #ff3e3e"
+                    } else {
+                        color = "background:orange"
+                    }
+
+                    var str = '<li class="wh"><a href="xq2.html?cid=' + (arr[i].id) + '&currency=' + arr[i].full_name + '&title=' + arr[i].abbreviation + '"><div class="left"><img src="//' + arr[i].img + '" class="img_zcw"/><span class="bizhong">' + arr[i].abbreviation + '</span></div><div class="right"><div class="jz"><span>￥' + arr[i].price + '元</span></div><div class="bli" style="' + color + '">' + arr[i].rose + '%</div></div></a></li>';
+
+                    $(".ul3").append(str);
+
+                }
+            }
+        })
+    })
+
+    document.onkeydown = function (e) {
+        var ev = document.all ? window.event : e;
+        if (ev.keyCode == 13) {
+            var my_data = $("input").val();
+            $(".wh").remove();
+            $.ajax({
+                url: host_jk + "/api.php/Trend/market/access_token"+token,
+                data: {
+                    search: my_data
+                },
+                type: 'get',
+                async: true,
+                dataType: "json",
+                success: function (messg) {
+                    var arr = messg.data.lists;
+                    var color = "";
+                    for (var i = 0; i < arr.length; i++) {
+
+                        if (arr[i].rose > 0) {
+                            color = "background:#27caa2"
+                        } else if (arr[i].rose < 0) {
+                            color = "background: #ff3e3e"
+                        } else {
+                            color = "background:orange"
+                        }
+
+                        var str = '<li class="wh"><a href="xq2.html?cid=' + (arr[i].id) + '&currency=' + arr[i].full_name + '&title=' + arr[i].abbreviation + '"><div class="left"><img src="//' + arr[i].img + '" class="img_zcw"/><span class="bizhong">' + arr[i].abbreviation + '</span></div><div class="right"><div class="jz"><span>￥' + arr[i].price + '元</span></div><div class="bli" style="' + color + '">' + arr[i].rose + '%</div></div></a></li>';
+
+                        $(".ul3").append(str);
+
+                    }
+                }
+            });
+
+        }
+    }
+
+    function GetQueryString(name) {
+        var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
+        var r = window.location.search.substr(1).match(reg);
+        if (r != null) return unescape(r[2]);
+        return null;
+    }
+</script>
+

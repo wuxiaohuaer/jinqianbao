@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no">
+	    <meta name="format-detection" content="telephone=no" />
+	    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	    <meta content="email=no" name="format-detection" />
+	    
+		<title>行情</title>
+		<link rel="stylesheet" type="text/css" href="css/index_style.css?v=2"/>
+		<link rel="stylesheet" href="swiper/css/swiper.css">
+		<link rel="stylesheet" href="swiper/css/swiper.min.css">
+		<script type="text/javascript">
+	    	window.onload=function(){
+				document.documentElement.style.fontSize = document.documentElement.clientWidth / 7.5 + 'px';
+			}
+	   </script>
+	</head>
+	<body class="body_hq">
+		
+		<div class="zg_top" style="position: fixed;left: 0px;top: -50px;width:100%;height: 50px;background: #1a1a20;"></div>
+		
+		<header class="two_hq one_header_hq">
+			<p>行情</p>
+			<img src="img/ss.png" alt="" />
+			<form action="" method="post" clas=".input1_search">
+				<input type="text" placeholder="请输入要搜索的币种" class="input1"/>
+			</form>
+			<span>取消</span>
+		</header>
+		
+		<header class="two_hq two_header_hq">
+			<p>行情</p>
+			<img src="img/ss.png" alt="" />
+			<input type="text" placeholder="请输入要搜索的币种" class="input2"/>
+			<span>取消</span>
+		</header>
+		
+		<article class="wrapper_two">
+			<div class="menu_hq">
+				<ul class="clearfix">
+					<li id="scxq" class="scxq">市场行情</li>
+					<li id="gzbz" class="gzbz">关注币种</li>
+				</ul>
+			</div>
+			<ul class="sc_hq">
+				<li class="tab1">
+					<p>区块链行情快讯</p>
+					<div id="wrapper" class="swiper-container">
+						<div id="scroller" class="clearfix swiper-wrapper">
+							<!--<img src="img/banner_hq.png" alt="" />
+							<img src="img/banner_hq.png" alt="" />
+							<img src="img/banner_hq.png" alt="" />
+							<img src="img/banner_hq.png" alt="" />
+							<img src="img/banner_hq.png" alt="" />-->
+							<div class="swiper-scrollbar"></div>
+						</div>
+					</div>
+					<div class="sshq_bj clearfix">
+						<span class="span1">实时行情</span>
+						<span class="span2">编辑</span>
+						<span class="span3">完成</span>
+					</div>
+					<ol class="title clearfix">
+						<li>名称</li>
+						<li>价格（CNY）</li>
+						<li>成交量（万）</li>
+						<li>涨跌24H</li>
+					</ol>
+					<ol class="menu_li1">
+						<!--<li>
+							<p>BTC</p>
+							<p>59,178</p>
+							<p>￥49.10</p>
+							<p>-2.74%</p>
+							<p class="">
+								<img src="img/shou-cang.png" class="img1"/>
+								<img src="img/xing.png" class="img2"/>
+							</p>
+						</li>-->
+					</ol>
+				</li>
+				<input name="type" value="1" type="hidden">
+				<li class="tab2">
+					<div class="sshq_bj 	clearfix">
+						<span class="span1">实时行情</span>
+						<span class="span2">编辑</span>
+						<span class="span3">完成</span>
+					</div>
+					<ol class="title clearfix">
+						<li>名称</li>
+						<li>价格（CNY）</li>
+						<li>成交量（万）</li>
+						<li>涨跌24H</li>
+					</ol>
+					<ol class="menu_li2">
+						<!-- <li>
+							<p>BTC</p>
+							<p>59,178</p>
+							<p>￥49.10</p>
+							<p>-2.74%</p>
+						</li> -->
+					</ol>
+				</li>
+			</ul>
+		</article>
+		
+	</body>
+</html>
+<script src="js/jquery-1.10.1.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="js/config.js" type="text/javascript" charset="utf-8"></script>
+<script src="js/hq/swiper.js"></script>
+<script src="swiper/js/swiper.min.js"></script>
+<script src="js/hq/wjh.js"></script>
+<!--<script src="js/iscroll.js" type="text/javascript" charset="utf-8"></script>-->
+<script type="text/javascript">
+	$(function(){	
+		var uid = GetQueryString('uid');
+		var access_token = GetQueryString('access_token');
+		var token = tokens
+		var code = codes;
+		var uid = 'TURBd01EQXdNREF3TUg2RnItQ0R0bmRyc2MtbXFIMmNxSmV5ZXNwamY3VjJaWU93cUphMHVJSm5nSVhOb3c=';
+		//判断是否有uid
+		if(uid==null){
+			$(".wrapper_two .sc_hq .tab1 .sshq_bj .span2").hide();
+			$(".wrapper_two .sc_hq .tab2 .sshq_bj .span2").hide();
+		}else{
+			$(".wrapper_two .sc_hq .tab1 .sshq_bj .span2").show();
+			$(".wrapper_two .sc_hq .tab2 .sshq_bj .span2").show();
+		}
+		//tab1/2搜索
+		document.onkeydown=function(e){
+			var ev=document.all?window.event:e;
+			if(ev.keyCode==13){
+				var my_data=$(".input1").val();
+				my_data=escape(my_data)+"";
+				$(".wrapper_two .sc_hq .tab1 .sshq_bj .span2").show();
+				$(".wrapper_two .sc_hq .tab1 .sshq_bj .span3").hide();
+				$(".wrapper_two .sc_hq .tab2 .sshq_bj .span2").show();
+				$(".wrapper_two .sc_hq .tab2 .sshq_bj .span3").hide();
+				document.activeElement.blur();
+				if (code === 4001) {
+					token = fun1() 
+				} else {
+					token = token
+				}
+				$.ajax({
+                    url: much+"/api.php/Trend/market/access_token/"+token,
+                    data:{
+                    	'search':my_data,
+                    	"uid":uid,
+                    	"limit":50
+                    },
+                    type:'POST',
+                    async:true,
+					dataType:"json",
+                    success:function(messg1){
+						
+						$(".menu_li1 li").remove();
+						
+						
+						var arr=messg1.data.lists;
+						
+						var color="";
+						for(var i=0;i<arr.length;i++){
+							
+							if(arr[i].rose>0){
+								color = "color:green"
+							}else if(arr[i].rose<0){
+								color = "color: #ff3e3e"
+							}else{
+								color = "color:orange"
+							}
+							
+							var str1='<li><p>'+arr[i].abbreviation+'</p><p>'+arr[i].price+'</p><p>￥'+arr[i].turnover+'</p><p style="'+color+'">'+arr[i].rose+'%</p><p class="'+arr[i].is_collection+'" id="'+arr[i].id+'"><img src="img/shou-cang.png" class="img1"/><img src="img/xing.png" class="img2"/></p></li>';;
+							
+							$(".menu_li1").append(str1);
+							
+						}
+						$(".false .img2").hide();
+						$(".true .img1").hide();
+						$(".input1").val("");
+					}
+                });
+                var my_data2=$(".input2").val();
+				my_data2=escape(my_data2)+"";
+				if (code === 4001) {
+					token = fun1() 
+				} else {
+					token = token
+				}
+				$.ajax({
+                    url: much+"/api.php/Quotation/lists/p/1/access_token/"+token,
+                    data:{
+                    	"search":my_data2,
+                    	"uid":uid,
+                    	"limit":50
+                    },
+                    type:'post',
+                    async:true,
+					dataType:"json",
+                    success:function(messg1){
+						
+						$(".menu_li2 li").remove();
+						
+						console.log(1);
+						var arr=messg1.data.lists;
+						var color="";
+						for(var i=0;i<arr.length;i++){
+							
+							if(arr[i].rose>0){
+								color = "color:green"
+							}else if(arr[i].rose<0){
+								color = "color: #ff3e3e"
+							}else{
+								color = "color:orange"
+							}
+							
+							var str1='<li><p>'+arr[i].abbreviation+'</p><p>'+arr[i].price+'</p><p>￥'+arr[i].turnover+'</p><p style="'+color+'">'+arr[i].rose+'%</p><p class="ture2" id="'+arr[i].tid+'"><img src="img/xing.png" class="img2"/></p></li>';;
+							
+							$(".menu_li2").append(str1);
+							$(".true2 .img1").hide();
+							$(".input2").val("");
+						}
+					}
+                });
+				
+			}
+		}
+		
+		$(".input1_search").onsubmit = function(e){
+		   var my_data=$(".input1").val();
+				my_data=escape(my_data)+"";
+				$(".wrapper_two .sc_hq .tab1 .sshq_bj .span2").show();
+				$(".wrapper_two .sc_hq .tab1 .sshq_bj .span3").hide();
+				document.activeElement.blur();
+				if (code === 4001) {
+					token = fun1() 
+				} else {
+					token = token
+				}
+				$.ajax({
+                    url: much+"/api.php/Trend/market/access_token/"+token,
+                    data:{
+                    	'search':my_data,
+                    	"uid":uid,
+                    	"limit":50
+                    },
+                    type:'POST',
+                    async:true,
+					dataType:"json",
+                    success:function(messg1){
+						
+						$(".menu_li1 li").remove();
+						
+//						console.log(1);
+						var arr=messg1.data.lists;
+						var color="";
+						for(var i=0;i<arr.length;i++){
+							
+							if(arr[i].rose>0){
+								color = "color:green"
+							}else if(arr[i].rose<0){
+								color = "color: #ff3e3e"
+							}else{
+								color = "color:orange"
+							}
+							
+							var str1='<li><p>'+arr[i].abbreviation+'</p><p>'+arr[i].price+'</p><p>￥'+arr[i].turnover+'</p><p style="'+color+'">'+arr[i].rose+'%</p><p class="'+arr[i].is_collection+'" id="'+arr[i].id+'"><img src="img/shou-cang.png" class="img1"/><img src="img/xing.png" class="img2"/></p></li>';;
+							
+							$(".menu_li1").append(str1);
+							
+						}
+						$(".false .img2").hide();
+						$(".true .img1").hide();
+						$(".input1").val("");
+					}
+                });
+		    document.activeElement.blur();//软键盘收起
+		}
+		
+		
+		
+//		$(document).on('click','.true2',function(){
+//			var tid=$(this).attr("id");
+//			var th=$(this);
+//			$.ajax({
+//				url:much+"/api.php/Quotation/cancelCollection",
+//				type: 'POST',
+//				async:true,
+//				dataType:"json",
+//				data:{
+//					"uid":uid,
+//					"tid":tid
+//				},
+//				success:function(messg2){
+//					console.log(messg2.code)
+//					if(messg2.code==200){
+//						th.parent().remove();
+//					}
+//				}
+//			})
+//			
+//		});
+		
+		//tab2搜索
+//		document.onkeydown=function(e){
+//			var ev=document.all?window.event:e;
+//			if(ev.keyCode==13){
+//				var my_data=$(".input2").val();
+//				my_data=escape(my_data)+"";
+//				$.ajax({
+//                  url: much+"/api.php/Quotation/lists/p/1",  
+//                  data:{
+//                  	search:my_data,
+//                  	"uid":uid,
+//                  	"limit":50
+//                  },
+//                  type:'post',
+//                  async:true,
+//					dataType:"json",
+//                  success:function(messg1){
+//						
+//						$(".menu_li2 li").remove();
+//						
+//						console.log(1);
+//						var arr=messg1.data.lists;
+//						var color="";
+//						for(var i=0;i<arr.length;i++){
+//							
+//							if(arr[i].rose>0){
+//								color = "color:green"
+//							}else if(arr[i].rose<0){
+//								color = "color: #ff3e3e"
+//							}else{
+//								color = "color:orange"
+//							}
+//							
+//							var str1='<li><p>'+arr[i].abbreviation+'</p><p>'+arr[i].price+'</p><p>￥'+arr[i].turnover+'</p><p style="'+color+'">'+arr[i].rose+'%</p><p class="ture1" id="'+arr[i].tid+'"><img src="img/xing.png" class="img2"/></p></li>';;
+//							
+//							$(".menu_li2").append(str1);
+//							$(".true1 .img1").hide();
+//							
+//						}
+//						
+//					}
+//              });
+//				
+//			}
+//		}
+		
+		$(".two_header_hq img").click(function(){
+			$(this).hide();
+			$(".two_header_hq p").hide();
+			$(".two_header_hq input").show();
+			$(".two_header_hq span").show();
+		});
+		
+		//tab2取消搜索
+		$(".two_header_hq span").click(function(){
+			$(this).hide();
+			$(".two_header_hq input").hide();
+			$(".two_header_hq p").show();
+			$(".two_header_hq img").show();
+			if (code === 4001) {
+				token = fun1() 
+			} else {
+				token = token
+			}
+			$.ajax({
+				url:much+"/api.php/Quotation/lists/p/1/access_token/"+token,
+				type: 'POST',
+				async:true,
+				dataType:"json",
+				data:{
+					"uid":uid,
+					"limit":30,
+					"p":1
+				},
+				success:function(mess){
+//					console.log(mess.data.lists);
+					var arr=mess.data.lists;
+					$(".menu_li2 li").remove();
+					var color="";
+					for(var i=0;i<arr.length;i++){
+						
+						if(arr[i].rose>0){
+//							console.log(1)
+							color = "color:green"
+						}else if(arr[i].rose<0){
+//							console.log(2)
+							color = "color: #ff3e3e"
+						}else{
+//							console.log(3)
+							color = "color:orange"
+						}
+						
+						var str1='<li><p>'+arr[i].abbreviation+'</p><p>'+arr[i].price+'</p><p>￥'+arr[i].turnover+'</p><p style="'+color+'">'+arr[i].rose+'%</p><p class="true1" id="'+arr[i].tid+'"><img src="img/xing.png" class="img2"/></p></li>';
+						
+						
+						$(".menu_li2").append(str1);
+					}
+					$(".true1 .img1").hide();
+					
+				}
+			})
+		});
+		
+		$(".one_header_hq img").click(function(){
+			$(this).hide();
+			$(".one_header_hq p").hide();
+			$(".one_header_hq input").show();
+			$(".one_header_hq span").show();
+		});
+		
+		//tab1取消搜索
+		$(".one_header_hq span").click(function(){
+			$(this).hide();
+			$(".one_header_hq input").hide();
+			$(".one_header_hq p").show();
+			$(".one_header_hq img").show();
+			if (code === 4001) {
+				token = fun1() 
+			} else {
+				token = token
+			}
+			$.ajax({
+				url:much+"/api.php/Trend/market/access_token/"+token,
+				async:true,
+				dataType:"json",
+				type:"POSt",
+				data:{
+					"uid":uid,
+					"p":1,
+					"limit":3000
+				},
+				success:function(messg){
+					var arr2=messg.data.lists;
+					var color="";
+					$(".menu_li1 li").remove();
+					for(var i=0;i<arr2.length;i++){
+						
+						if(arr2[i].rose>0){
+							color = "color:green"
+						}else if(arr2[i].rose<0){
+							color = "color: #ff3e3e"
+						}else{
+							color = "color:orange"
+						}
+						
+						var str='<li><p>'+arr2[i].abbreviation+'</p><p>'+arr2[i].price+'</p><p>￥'+arr2[i].turnover+'</p><p style="'+color+'">'+arr2[i].rose+'%</p><p class="'+arr2[i].is_collection+'" id="'+arr2[i].id+'"><img src="img/shou-cang.png" class="img1"/><img src="img/xing.png" class="img2"/></p></li>';
+						
+						
+						$(".menu_li1").append(str);
+					}
+					$(".false .img2").hide();
+						$(".true .img1").hide();
+				}
+			})
+		});
+	})
+	function GetQueryString(name) {
+	    var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
+	    var r = window.location.search.substr(1).match(reg);
+	    if (r != null) return unescape(r[2]);
+	    return null;
+	}
+	
+</script>
