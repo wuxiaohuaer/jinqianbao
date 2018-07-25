@@ -41,8 +41,6 @@ if (code === 4001) {
 }
 function getHIT() {
     $(function () {
-//      var uid = GetQueryString('uid');
-        //   var uid ="TURBd01EQXdNREF3TUg2RnItQ0R0bmRyc2MtbXFIMmNxSmV5ZXNwamY3VjJaWU93cUphMHVJSm5nSVhOb3c="
         //    var uid = 'TURBd01EQXdNREF3TUg2RnItQ0R0bmRyc2MtbXFIMmNxSmV5ZXNwamY3VjJaWU93cUphMHVJSm5nSVhOb3c=';
         $.ajax({
 
@@ -164,8 +162,6 @@ function removeImg(obj) {
     var hid = $(obj).attr('hid');
     var hit = $(obj).attr('hit');
 
-//  var uid = GetQueryString('uid');
-//    var uid ="TURBd01EQXdNREF3TUlDZnI1ZXZtM2VvZjR5TWJZZW1vOXFFbXAyWGc0MThwb1dFaksyemVYWnJnYS0zMjY1eWMzRQ=="
 //  var uid = 'TURBd01EQXdNREF3TUlDdWt0cXZxNW1zZjN4OGFZYTJpWmFEYzJiY2hJMkFySWFhb21leHI1aXk=';
     if (code === 4001) {
         token = fun1() 
@@ -206,10 +202,8 @@ function removeImg(obj) {
 
     if (len == 1) {
         $(obj).remove();
-        //$(".imgb").load(location.href+" .imgb");
         window.location.reload();
     } else {
-        // alert(len);
         $(obj).remove();
     }
 }

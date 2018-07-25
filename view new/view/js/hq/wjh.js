@@ -1,6 +1,6 @@
 var token = tokens;
 var code = codes;
-var uid = 'TURBd01EQXdNREF3TUg2RnItQ0R0bmRyc2MtbXFIMmNxSmV5ZXNwamY3VjJaWU93cUphMHVJSm5nSVhOb3c=';
+// var uid = 'TURBd01EQXdNREF3TUg2RnItQ0R0bmRyc2MtbXFIMmNxSmV5ZXNwamY3VjJaWU93cUphMHVJSm5nSVhOb3c=';
 var p = 1;
 var pages = 2;
 
@@ -266,31 +266,6 @@ function getdata2(){
         }
     })
 }
-
-// $("body").on("click",".ture",function(){
-//     var tid=$(this).attr("id");
-//     var th=$(this);
-//     if (code === 4001) {
-//         token = fun1() 
-//     } else {
-//         token = token
-//     }
-//     $.ajax({
-//         url:much+"/api.php/Quotation/cancelCollection/access_token/"+token,
-//         type: 'POST',
-//         async:true,
-//         dataType:"json",
-//         data:{
-//             "uid":uid,
-//             "tid":tid
-//         },
-//         success:function(messg2){
-//             if(messg2.code==200){
-//                 th.parent().remove();
-//             }
-//         }
-//     })
-// })
 $(document).on('click','.false',function(){
     var tid=$(this).attr("id");
     var th=$(this);
